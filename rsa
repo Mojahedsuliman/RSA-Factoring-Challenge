@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+import sys
+from sympy import factorint
+
+def main(file):
+    with open(file, 'r') as f:
+        numbers = f.readlines()
+        for line in numbers:
+            number = int(line)
+            factors = factorint(number)
+            prime_factors = sorted(factors.keys())
+            p, q = prime_factors[0], prime_factors[1]
+            print(f"{number}={p}*{q}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: rsa <file>")
+        sys.exit(1)
+    file = sys.argv[1]
+    main(file)
+
